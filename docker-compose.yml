@@ -4,7 +4,7 @@ services:
     build:
       context: ./api
     ports:
-      - "3080:3080"
+      - "3080:${API_PORT}"
     container_name: back-api
     volumes:
        - ./api:/usr/src/app/api
@@ -13,7 +13,7 @@ services:
     build:
       context: ./my-app
     ports:
-      - "3000:3000"
+      - "3000:${FRONT_PORT}"
     container_name: my-app
     stdin_open: true
     volumes:
