@@ -5,7 +5,7 @@ services:
       context: ./api
     ports:
       - "3080:3080"
-    container_name: node-api
+    container_name: back-api
     volumes:
        - ./api:/usr/src/app/api
        - /usr/src/app/api/node_modules
@@ -14,7 +14,7 @@ services:
       context: ./my-app
     ports:
       - "3000:3000"
-    container_name: react-ui
+    container_name: my-app
     stdin_open: true
     volumes:
        - ./my-app:/usr/src/app/my-app
