@@ -6,9 +6,12 @@ services:
     ports:
       - "3080:${API_PORT}"
     container_name: back-api
+    networks: 
+      - my-application
     volumes:
-       - ./api:/usr/src/app/api
-       - /usr/src/app/api/node_modules
+      - ./api:/usr/src/app/api
+      - /usr/src/app/api/node_modules
+
   react-ui:
     build:
       context: ./my-app
@@ -16,6 +19,24 @@ services:
       - "3000:${FRONT_PORT}"
     container_name: my-app
     stdin_open: true
+    networks: 
+      - my-application
     volumes:
-       - ./my-app:/usr/src/app/my-app
-       - /usr/src/app/my-app/node_modules
+      - ./my-app:/usr/src/app/my-app
+      - /usr/src/app/my-app/node_modules
+
+  mongo-db:
+    image: mongo:latest
+    ports: 
+      - "27017:27017"
+    networks: 
+      - my-application
+    volumes: 
+      - mongo-data:/data/db
+
+networks: 
+  my-application: 
+    driver: bridge
+volumes: 
+  mongo-data: 
+    driver: local
