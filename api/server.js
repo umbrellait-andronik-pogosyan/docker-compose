@@ -5,7 +5,18 @@ const indexRouter = require('./routes/index');
 const helloRouter = require('./routes/hello');
 const todoRouter = require('./routes/todo')
 const db = require('./db');
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
+// app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json())
+
+app.use(express.json({
+    type: ['application/json', 'text/plain']
+  }))
+
+app.use(cors())
 
 app.use('/', indexRouter);
 

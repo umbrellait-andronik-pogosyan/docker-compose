@@ -4,29 +4,24 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [inputValue, setInputValue] = useState('')
-  const [todos, setTodos] = useState([{title: 'task 1', closed: false, id: 123}, {title: 'task 2', closed: true, id: 1234}])
+  const [todos, setTodos] = useState([])
 
-  useEffect(() => {
-    console.log(inputValue, todos)
-  }, [inputValue])
-
-  function handeAddTodo (value) {
-    if(value) {
+  function handeAddTodo (todo) {
       setTodos((prev) => {
         let result = prev.concat()
   
-        result.push({id: Math.random(), title: value, closed: false})
+        result.push(todo)
   
         return result
       })
       setInputValue('')
-    }
   }
 
   const getAllTodos = async () => {
     try {
-      await fetch('/api/todo',{ method: 'GET', mode: 'no-cors',})
-      .then(res => console.log(res))
+      await fetch('http://localhost:3080/todo')
+      .then(res => res.json())
+      .then(r => setTodos(r))
     } catch (e) {
       console.log(e)
     }
@@ -34,7 +29,7 @@ function App() {
 
   const sayHello = async () => {
     try {
-      await fetch('http://localhost:3080/hello',{ method: 'GET', mode: 'no-cors'})
+      await fetch('http://localhost:3080/hello')
       .then(res => res.json())
       .then(r => console.log(r))
     } catch (e) {
@@ -44,11 +39,11 @@ function App() {
 
   const createNewTodo = async (title) => {
     try {
-      await fetch('/api/todo/create', {
-        method: 'POST', 
-        mode: 'no-cors',
+      await fetch('http://localhost:3080/todo/create', {
+        method: 'POST',
         body: JSON.stringify({title, closed: false})})
-      .then(res => console.log(res))
+      .then(res => res.json())
+      .then(r => handeAddTodo(r))
     } catch (e) {
       console.log(e)
     }
@@ -65,10 +60,11 @@ function App() {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button onClick={() => sayHello()}>Send</button>
+      <button onClick={() => createNewTodo(inputValue)}>Send</button>
       {todos.map(el => {
-        return <div className={el.closed ? 'closed' : 'opened'} key={el.id}>{el.title}</div>
+        return <div className={el.closed ? 'closed' : 'opened'} key={el._id}>{el.title}</div>
       })}
+      <button onClick={() => getAllTodos()}>reload</button>
     </div>
   );
 }

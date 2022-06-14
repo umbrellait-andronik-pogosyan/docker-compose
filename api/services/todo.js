@@ -6,7 +6,7 @@ const todoService = {
     createTodo: async (req, res) => {
         try {
             const { title, closed } = req.body
-            console.log('create create')
+
             const newTodo = new Todo({title, closed})
 
             const result = await newTodo.save()
@@ -20,7 +20,7 @@ const todoService = {
     getAllTodo: async (req, res) => {
         try {
             const result = await Todo.find()
-            console.log('get get get get')
+
             res.send(result)
         
         } catch (e) {
