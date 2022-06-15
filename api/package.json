@@ -4,7 +4,7 @@
   "description": "example project react with nodejs",
   "main": "server.js",
   "scripts": {
-    "start": "node server.bundle.js",
+    "start": "node server.js",
     "build": "webpack",
     "dev": "nodemon ./server.js localhost 3080"
   },
@@ -15,8 +15,12 @@
   "author": "Bhargav Bachina",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "http-proxy-middleware": "^1.0.4"
+    "express-generator": "^4.16.1",
+    "http-proxy-middleware": "^1.0.4",
+    "mongoose": "^6.3.8"
   },
   "devDependencies": {
     "del": "^5.1.0",

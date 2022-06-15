@@ -6,6 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 3080
+EXPOSE $BACK
 
-CMD ["npm", "run", "dev"]
+CMD npm run $ENV

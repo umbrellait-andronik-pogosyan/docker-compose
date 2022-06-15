@@ -6,6 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE $REACT_APP_PORT
 
-CMD ["npm", "start"]
+CMD $ENV
