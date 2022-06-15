@@ -1,6 +1,8 @@
+const URL = process.env.REACT_APP_API_URL
+
 export const getAllTodos = async (callback) => {
     try {
-      await fetch('http://localhost:3080/todo')
+      await fetch(`${URL}/todo`)
       .then(res => res.json())
       .then(r => callback(r))
     } catch (e) {
@@ -10,7 +12,7 @@ export const getAllTodos = async (callback) => {
 
 export const createNewTodo = async (title, callback) => {
     try {
-      await fetch('http://localhost:3080/todo/create', {
+      await fetch(`${URL}/todo/create`, {
         method: 'POST',
         body: JSON.stringify({title, closed: false})})
       .then(res => res.json())

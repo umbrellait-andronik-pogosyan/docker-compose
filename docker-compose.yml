@@ -8,7 +8,7 @@ services:
     container_name: back-api
     environment:
       - BACK= ${API_PORT}
-      - BACK_COMMAND= ${BACK_COMMAND}
+      - ENV= ${BACK_ENV}
     networks: 
       - my-application
     volumes:
@@ -22,8 +22,9 @@ services:
       - "3000:${FRONT_PORT}"
     container_name: my-app
     environment:
-      - FRONT= ${FRONT_PORT}
-      - FRONT_COMMAND= ${FRONT_COMMAND}
+      - REACT_APP_PORT= ${FRONT_PORT}
+      - REACT_APP_API_URL= ${REACT_APP_API_URL}
+      - ENV= ${FRONT_ENV}
     stdin_open: true
     networks: 
       - my-application

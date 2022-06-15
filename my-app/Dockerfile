@@ -6,6 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-EXPOSE $FRONT
+EXPOSE $REACT_APP_PORT
 
-CMD $FRONT_COMMAND
+CMD $ENV
