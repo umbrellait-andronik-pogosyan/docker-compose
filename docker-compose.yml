@@ -6,6 +6,9 @@ services:
     ports:
       - "3080:${API_PORT}"
     container_name: back-api
+    environment:
+      - BACK= ${API_PORT}
+      - BACK_COMMAND= ${BACK_COMMAND}
     networks: 
       - my-application
     volumes:
@@ -18,6 +21,9 @@ services:
     ports:
       - "3000:${FRONT_PORT}"
     container_name: my-app
+    environment:
+      - FRONT= ${FRONT_PORT}
+      - FRONT_COMMAND= ${FRONT_COMMAND}
     stdin_open: true
     networks: 
       - my-application

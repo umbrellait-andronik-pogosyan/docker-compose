@@ -6,6 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE $FRONT
 
-CMD ["npm", "start"]
+CMD $FRONT_COMMAND
