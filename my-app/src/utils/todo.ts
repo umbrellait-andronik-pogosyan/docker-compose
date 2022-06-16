@@ -1,6 +1,9 @@
+import ITodo from '../interfaces/todo'
+
 const URL = process.env.REACT_APP_API_URL
 
-export const getAllTodos = async (callback) => {
+
+export const getAllTodos = async (callback: (arg: ITodo[]) => void) => {
     try {
       await fetch(`${URL}/todo`)
       .then(res => res.json())
@@ -10,7 +13,7 @@ export const getAllTodos = async (callback) => {
     }
 }
 
-export const createNewTodo = async (title, callback) => {
+export const createNewTodo = async (title: string, callback: (arg: ITodo) => void) => {
     try {
       await fetch(`${URL}/todo/create`, {
         method: 'POST',
