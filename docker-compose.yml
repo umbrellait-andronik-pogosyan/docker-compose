@@ -35,7 +35,7 @@ services:
   mongo-db:
     image: mongo:latest
     ports: 
-      - "27017:27017"
+      - "27017:${DB_PORT}"
     networks: 
       - my-application
     volumes: 
