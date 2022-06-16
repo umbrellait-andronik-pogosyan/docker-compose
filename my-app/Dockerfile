@@ -8,4 +8,4 @@ RUN npm install
 
 EXPOSE $REACT_APP_PORT
 
-CMD $ENV
+CMD npm run start

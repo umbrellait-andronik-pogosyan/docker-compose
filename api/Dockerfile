@@ -8,4 +8,4 @@ RUN npm install
 
 EXPOSE $BACK
 
-CMD npm run $ENV
+CMD npm run start:$ENV
